@@ -1,0 +1,16 @@
+{
+  "nav_home": "Головна",
+  "nav_cart": "Кошик",
+  "nav_orders": "Замовлення",
+  "nav_profile": "Профіль",
+  "nav_login": "Увійти",
+  "nav_signup": "Зареєструватися",
+  "nav_logout": "Вийти",
+  "button_submit": "Підтвердити",
+  "button_cancel": "Скасувати",
+  "button_save": "Зберегти",
+  "button_back": "Назад",
+  "error_generic": "Щось пішло не так. Спробуйте ще раз.",
+  "error_notFound": "Сторінку не знайдено.",
+  "loading": "Завантаження..."
+}

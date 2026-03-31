@@ -1,5 +1,14 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import { lazy, Suspense } from 'react';
+
+// eslint-disable-next-line
+const TanStackRouterDevtools = import.meta.env.PROD
+  ? () => null
+  : lazy(() =>
+      import('@tanstack/react-router-devtools').then(res => ({
+        default: res.TanStackRouterDevtools,
+      })),
+    );
 
 // eslint-disable-next-line
 const RootLayout = () => (
@@ -8,7 +17,9 @@ const RootLayout = () => (
     <main style={{ padding: '1rem' }}>
       <Outlet />
     </main>
-    <TanStackRouterDevtools />
+    <Suspense>
+      <TanStackRouterDevtools />
+    </Suspense>
   </>
 );
 

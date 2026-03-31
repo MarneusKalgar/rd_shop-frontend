@@ -1,0 +1,17 @@
+{
+  "title": "Мої замовлення",
+  "empty": "Замовлень ще немає.",
+  "col_id": "Замовлення №",
+  "col_date": "Дата",
+  "col_total": "Сума",
+  "col_status": "Статус",
+  "status_pending": "Очікує",
+  "status_confirmed": "Підтверджено",
+  "status_shipped": "Відправлено",
+  "status_delivered": "Доставлено",
+  "status_cancelled": "Скасовано",
+  "detail_title": "Замовлення №{{id}}",
+  "detail_items": "Товари",
+  "detail_cancel": "Скасувати замовлення",
+  "detail_paymentStatus": "Статус оплати"
+}

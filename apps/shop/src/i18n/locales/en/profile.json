@@ -1,0 +1,12 @@
+{
+  "title": "My Profile",
+  "field_email": "Email",
+  "field_firstName": "First name",
+  "field_lastName": "Last name",
+  "avatar_upload": "Upload avatar",
+  "password_section": "Change password",
+  "password_current": "Current password",
+  "password_new": "New password",
+  "password_confirm": "Confirm new password",
+  "save_success": "Profile updated successfully."
+}

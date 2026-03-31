@@ -1,0 +1,16 @@
+{
+  "nav_home": "Home",
+  "nav_cart": "Cart",
+  "nav_orders": "Orders",
+  "nav_profile": "Profile",
+  "nav_login": "Log In",
+  "nav_signup": "Sign Up",
+  "nav_logout": "Log Out",
+  "button_submit": "Submit",
+  "button_cancel": "Cancel",
+  "button_save": "Save",
+  "button_back": "Back",
+  "error_generic": "Something went wrong. Please try again.",
+  "error_notFound": "Page not found.",
+  "loading": "Loading..."
+}
