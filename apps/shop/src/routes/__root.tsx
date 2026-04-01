@@ -1,5 +1,9 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { createRootRoute } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
+import Box from '@mui/material/Box';
+import { Header } from '../components/layout/Header/Header';
+import { Footer } from '../components/layout/Footer/Footer';
+import { Main } from '../components/layout/Main/Main';
 
 // eslint-disable-next-line
 const TanStackRouterDevtools = import.meta.env.PROD
@@ -12,15 +16,14 @@ const TanStackRouterDevtools = import.meta.env.PROD
 
 // eslint-disable-next-line
 const RootLayout = () => (
-  <>
-    <header style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>Header placeholder</header>
-    <main style={{ padding: '1rem' }}>
-      <Outlet />
-    </main>
+  <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Header />
+    <Main />
+    <Footer />
     <Suspense>
       <TanStackRouterDevtools />
     </Suspense>
-  </>
+  </Box>
 );
 
 export const Route = createRootRoute({ component: RootLayout });

@@ -9,6 +9,7 @@ import enCart from './locales/en/cart.json';
 import enOrders from './locales/en/orders.json';
 import enAuth from './locales/en/auth.json';
 import enProfile from './locales/en/profile.json';
+import enSearch from './locales/en/search.json';
 
 import ukCommon from './locales/uk/common.json';
 import ukHome from './locales/uk/home.json';
@@ -17,6 +18,7 @@ import ukCart from './locales/uk/cart.json';
 import ukOrders from './locales/uk/orders.json';
 import ukAuth from './locales/uk/auth.json';
 import ukProfile from './locales/uk/profile.json';
+import ukSearch from './locales/uk/search.json';
 
 const resources = {
   en: {
@@ -27,6 +29,7 @@ const resources = {
     orders: enOrders,
     auth: enAuth,
     profile: enProfile,
+    search: enSearch,
   },
   uk: {
     common: ukCommon,
@@ -36,6 +39,7 @@ const resources = {
     orders: ukOrders,
     auth: ukAuth,
     profile: ukProfile,
+    search: ukSearch,
   },
 };
 
@@ -46,7 +50,7 @@ i18n
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'products', 'cart', 'orders', 'auth', 'profile'],
+    ns: ['common', 'home', 'products', 'cart', 'orders', 'auth', 'profile', 'search'],
     debug: import.meta.env.DEV,
     interpolation: {
       escapeValue: false,

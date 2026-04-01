@@ -6,11 +6,16 @@
   "nav_login": "Log In",
   "nav_signup": "Sign Up",
   "nav_logout": "Log Out",
+  "search": "Search",
+  "search_placeholder": "Search products...",
+  "lang_switch": "UA",
   "button_submit": "Submit",
   "button_cancel": "Cancel",
   "button_save": "Save",
   "button_back": "Back",
   "error_generic": "Something went wrong. Please try again.",
   "error_notFound": "Page not found.",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "footer_copy": "© {{year}} RDShop, Inc.",
+  "footer_contact": "support@rdshop.com"
 }

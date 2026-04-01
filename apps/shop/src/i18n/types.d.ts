@@ -7,6 +7,7 @@ import type enCart from './locales/en/cart.json';
 import type enOrders from './locales/en/orders.json';
 import type enAuth from './locales/en/auth.json';
 import type enProfile from './locales/en/profile.json';
+import type enSearch from './locales/en/search.json';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -19,6 +20,7 @@ declare module 'i18next' {
       orders: typeof enOrders;
       auth: typeof enAuth;
       profile: typeof enProfile;
+      search: typeof enSearch;
     };
   }
 }

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root';
 import { Route as SignupRouteImport } from './routes/signup';
+import { Route as SearchRouteImport } from './routes/search';
 import { Route as ProfileRouteImport } from './routes/profile';
 import { Route as LoginRouteImport } from './routes/login';
 import { Route as CartRouteImport } from './routes/cart';
@@ -22,6 +23,11 @@ import { Route as CategoriesCategoryRouteImport } from './routes/categories/$cat
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any);
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any);
 const ProfileRoute = ProfileRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute;
   '/login': typeof LoginRoute;
   '/profile': typeof ProfileRoute;
+  '/search': typeof SearchRoute;
   '/signup': typeof SignupRoute;
   '/categories/$category': typeof CategoriesCategoryRoute;
   '/orders/$orderId': typeof OrdersOrderIdRoute;
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute;
   '/login': typeof LoginRoute;
   '/profile': typeof ProfileRoute;
+  '/search': typeof SearchRoute;
   '/signup': typeof SignupRoute;
   '/categories/$category': typeof CategoriesCategoryRoute;
   '/orders/$orderId': typeof OrdersOrderIdRoute;
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute;
   '/login': typeof LoginRoute;
   '/profile': typeof ProfileRoute;
+  '/search': typeof SearchRoute;
   '/signup': typeof SignupRoute;
   '/categories/$category': typeof CategoriesCategoryRoute;
   '/orders/$orderId': typeof OrdersOrderIdRoute;
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/login'
     | '/profile'
+    | '/search'
     | '/signup'
     | '/categories/$category'
     | '/orders/$orderId'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/login'
     | '/profile'
+    | '/search'
     | '/signup'
     | '/categories/$category'
     | '/orders/$orderId'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/login'
     | '/profile'
+    | '/search'
     | '/signup'
     | '/categories/$category'
     | '/orders/$orderId'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute;
   LoginRoute: typeof LoginRoute;
   ProfileRoute: typeof ProfileRoute;
+  SearchRoute: typeof SearchRoute;
   SignupRoute: typeof SignupRoute;
   CategoriesCategoryRoute: typeof CategoriesCategoryRoute;
   OrdersOrderIdRoute: typeof OrdersOrderIdRoute;
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/signup';
       fullPath: '/signup';
       preLoaderRoute: typeof SignupRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/search': {
+      id: '/search';
+      path: '/search';
+      fullPath: '/search';
+      preLoaderRoute: typeof SearchRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     '/profile': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
+  SearchRoute: SearchRoute,
   SignupRoute: SignupRoute,
   CategoriesCategoryRoute: CategoriesCategoryRoute,
   OrdersOrderIdRoute: OrdersOrderIdRoute,
