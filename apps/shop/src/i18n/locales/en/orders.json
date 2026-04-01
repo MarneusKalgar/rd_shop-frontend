@@ -1,0 +1,17 @@
+{
+  "title": "My Orders",
+  "empty": "No orders yet.",
+  "col_id": "Order #",
+  "col_date": "Date",
+  "col_total": "Total",
+  "col_status": "Status",
+  "status_pending": "Pending",
+  "status_confirmed": "Confirmed",
+  "status_shipped": "Shipped",
+  "status_delivered": "Delivered",
+  "status_cancelled": "Cancelled",
+  "detail_title": "Order #{{id}}",
+  "detail_items": "Items",
+  "detail_cancel": "Cancel order",
+  "detail_paymentStatus": "Payment status"
+}

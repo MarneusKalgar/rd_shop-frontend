@@ -1,0 +1,9 @@
+{
+  "title": "Ваш кошик",
+  "empty": "Кошик порожній.",
+  "item_quantity": "Кількість: {{count}}",
+  "item_remove": "Видалити",
+  "summary_subtotal": "Проміжний підсумок",
+  "summary_total": "Разом",
+  "checkout": "Перейти до оформлення"
+}

@@ -1,5 +1,5 @@
 const config = {
-  semi: false,
+  semi: true,
   singleQuote: true,
   trailingComma: 'all',
   printWidth: 100,
@@ -8,6 +8,6 @@ const config = {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'avoid',
-}
+};
 
-export default config
+export default config;

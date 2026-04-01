@@ -1,0 +1,12 @@
+{
+  "title": "Мій профіль",
+  "field_email": "Електронна пошта",
+  "field_firstName": "Ім'я",
+  "field_lastName": "Прізвище",
+  "avatar_upload": "Завантажити аватар",
+  "password_section": "Змінити пароль",
+  "password_current": "Поточний пароль",
+  "password_new": "Новий пароль",
+  "password_confirm": "Підтвердіть новий пароль",
+  "save_success": "Профіль успішно оновлено."
+}
