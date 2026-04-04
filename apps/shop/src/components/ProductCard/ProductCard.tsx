@@ -35,7 +35,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       <Box sx={mediaBoxSx}>
         <Box
           component="img"
-          src={product.mainImageUrl ?? '/placeholder.png'}
+          src={product.mainImageUrl ?? '/placeholder.jpg'}
           alt={product.title}
           loading="lazy"
           sx={imgSx}

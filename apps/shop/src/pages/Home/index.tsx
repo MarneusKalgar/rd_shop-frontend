@@ -32,8 +32,6 @@ export function Home() {
         {categories.map(category => {
           const Icon = categoryIconMap[category.name];
           const label = i18n.language === 'uk' ? category.nameUk : category.nameEn;
-          console.log('i18n.language:', i18n.language); // Debug log
-          console.log('Rendering category:', category.name, 'with label:', label); // Debug log
 
           return (
             <Grid key={category.name} size={categoryGridItemSize}>
