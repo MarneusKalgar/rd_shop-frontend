@@ -1,9 +1,10 @@
-import { createRootRoute } from '@tanstack/react-router';
+import { createRootRouteWithContext } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
 import Box from '@mui/material/Box';
 import { Header } from '../components/layout/Header/Header';
 import { Footer } from '../components/layout/Footer/Footer';
 import { Main } from '../components/layout/Main/Main';
+import type { store } from '@/store';
 
 // eslint-disable-next-line
 const TanStackRouterDevtools = import.meta.env.PROD
@@ -26,4 +27,6 @@ const RootLayout = () => (
   </Box>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRouteWithContext<{ store: typeof store }>()({
+  component: RootLayout,
+});
