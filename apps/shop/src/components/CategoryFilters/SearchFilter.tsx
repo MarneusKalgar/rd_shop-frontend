@@ -13,7 +13,7 @@ export function SearchFilter({ value, onChange }: SearchFilterProps) {
       label={t('search')}
       size="small"
       fullWidth
-      defaultValue={value}
+      value={value}
       onChange={e => onChange(e.target.value)}
     />
   );

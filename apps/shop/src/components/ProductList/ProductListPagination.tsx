@@ -8,7 +8,7 @@ export interface PaginationProps {
   hasPrevPage: boolean;
   nextCursor: string | null | undefined;
   goToNextPage: (cursor: string) => void;
-  goToPrevPage: () => void;
+  goToPage: (targetPage: number) => void;
 }
 
 export function Pagination({
@@ -17,13 +17,13 @@ export function Pagination({
   hasPrevPage,
   nextCursor,
   goToNextPage,
-  goToPrevPage,
+  goToPage,
 }: PaginationProps) {
   function handleChange(_e: React.ChangeEvent<unknown>, newPage: number) {
     if (newPage > page && hasNextPage && nextCursor) {
       goToNextPage(nextCursor);
     } else if (newPage < page && hasPrevPage) {
-      goToPrevPage();
+      goToPage(newPage);
     }
   }
 

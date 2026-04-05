@@ -10,7 +10,7 @@ export interface PaginationResult {
   cursor: string | undefined;
   hasPrevPage: boolean;
   goToNextPage: (nextCursor: string) => void;
-  goToPrevPage: () => void;
+  goToPage: (targetPage: number) => void;
   resetPagination: () => void;
 }
 
@@ -33,10 +33,17 @@ export function usePagination(
     navigate({ cursor: nextCursor, page: (page ?? 1) + 1 });
   }
 
-  function goToPrevPage() {
-    const prev = historyRef.current.pop();
+  function goToPage(targetPage: number) {
+    const currentPage = page ?? 1;
+    const stepsBack = currentPage - targetPage;
+    if (stepsBack <= 0) return;
+    // Discard intermediate entries, then navigate to the target.
+    for (let i = 0; i < stepsBack - 1; i++) {
+      historyRef.current.pop();
+    }
+    const target = historyRef.current.pop();
     setHasPrevPage(historyRef.current.length > 0);
-    navigate({ cursor: prev?.cursor, page: prev?.page });
+    navigate({ cursor: target?.cursor, page: target?.page });
   }
 
   function resetPagination() {
@@ -50,7 +57,7 @@ export function usePagination(
     cursor,
     hasPrevPage,
     goToNextPage,
-    goToPrevPage,
+    goToPage,
     resetPagination,
   };
 }

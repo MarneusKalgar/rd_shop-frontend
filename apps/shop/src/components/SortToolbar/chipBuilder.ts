@@ -5,6 +5,7 @@ export type FilterKey =
   | 'isActive'
   | 'maxPrice'
   | 'minPrice'
+  | 'priceRange'
   | 'search';
 
 interface FiltersValue {
@@ -63,7 +64,7 @@ export function buildChips(
     chips.push({
       key: 'price',
       label: `$${filters.minPrice} – $${filters.maxPrice}`,
-      filterKey: 'minPrice',
+      filterKey: 'priceRange',
     });
   } else if (filters.minPrice) {
     chips.push({ key: 'minPrice', label: `≥ $${filters.minPrice}`, filterKey: 'minPrice' });

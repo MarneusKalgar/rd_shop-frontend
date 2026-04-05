@@ -7,7 +7,7 @@ import { sharedFilterSchema } from '@/routes/filterSchema';
 const searchSchema = z.object({
   q: z.string().min(1),
   ...sharedFilterSchema,
-  categories: z.array(z.nativeEnum(ProductCategory)).optional(),
+  categories: z.array(z.enum(ProductCategory)).optional(),
 });
 
 export const Route = createFileRoute('/search')({

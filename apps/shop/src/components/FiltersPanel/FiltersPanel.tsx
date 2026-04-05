@@ -2,19 +2,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import type { SxProps, Theme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { BrandFilter } from '@/components/CategoryFilters/BrandFilter';
 import { CountryFilter } from '@/components/CategoryFilters/CountryFilter';
 import { PriceRangeFilter } from '@/components/CategoryFilters/PriceRangeFilter';
 import { StockFilter } from '@/components/CategoryFilters/StockFilter';
 import type { Product } from '@/store/api/types/product';
-
-const rootSx: SxProps<Theme> = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 2,
-};
+import { rootSx } from './FiltersPanel.styles';
 
 interface FiltersPanelSlots {
   /** Rendered after the title, before the divider (e.g. keyword SearchFilter) */

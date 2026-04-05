@@ -6,7 +6,7 @@ interface SearchPaginationProps {
 }
 
 export function SearchPagination({ nextCursor }: SearchPaginationProps) {
-  const { page, hasPrevPage, goToNextPage, goToPrevPage } = useSearchPagination();
+  const { page, hasPrevPage, goToNextPage, goToPage } = useSearchPagination();
   const hasNextPage = nextCursor != null;
 
   if (!hasNextPage && !hasPrevPage) return null;
@@ -18,7 +18,7 @@ export function SearchPagination({ nextCursor }: SearchPaginationProps) {
       hasPrevPage={hasPrevPage}
       nextCursor={nextCursor}
       goToNextPage={goToNextPage}
-      goToPrevPage={goToPrevPage}
+      goToPage={goToPage}
     />
   );
 }

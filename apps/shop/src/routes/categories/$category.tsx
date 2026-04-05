@@ -5,7 +5,6 @@ import { sharedFilterSchema } from '@/routes/filterSchema';
 
 const searchSchema = z.object({
   ...sharedFilterSchema,
-  search: z.string().max(200).optional(),
 });
 
 export const Route = createFileRoute('/categories/$category')({

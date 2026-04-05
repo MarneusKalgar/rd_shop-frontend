@@ -3,6 +3,7 @@ import { Route } from '@/routes/search';
 import { useFilters } from '@/hooks/useFilters';
 import type { FilterKey } from '@/components/SortToolbar/chipBuilder';
 import type { ProductCategory } from '@/store/api/types/product';
+import { omit } from '@/utils/objectUtils';
 
 export type SearchFilterKey =
   | 'brand'
@@ -38,6 +39,7 @@ export function useSearchFilters() {
       base.removeArrayValue(key, value);
       return;
     }
+
     if (key === 'categories' && value !== undefined) {
       void routeNavigate({
         search: prev => {
@@ -52,7 +54,20 @@ export function useSearchFilters() {
       });
       return;
     }
+
+    if (key === 'priceRange') {
+      void routeNavigate({
+        search: prev => ({
+          ...omit(prev, ['minPrice', 'maxPrice']),
+          cursor: undefined,
+          page: undefined,
+        }),
+      });
+      return;
+    }
+
     if (key === 'search') return; // not in search route schema
+
     base.clearField(key as keyof typeof search);
   };
 

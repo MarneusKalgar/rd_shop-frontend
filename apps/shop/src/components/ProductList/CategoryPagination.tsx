@@ -6,7 +6,7 @@ interface CategoryPaginationProps {
 }
 
 export function CategoryPagination({ nextCursor }: CategoryPaginationProps) {
-  const { page, hasPrevPage, goToNextPage, goToPrevPage } = useProductPagination();
+  const { page, hasPrevPage, goToNextPage, goToPage } = useProductPagination();
   const hasNextPage = nextCursor != null;
 
   if (!hasNextPage && !hasPrevPage) return null;
@@ -18,7 +18,7 @@ export function CategoryPagination({ nextCursor }: CategoryPaginationProps) {
       hasPrevPage={hasPrevPage}
       nextCursor={nextCursor}
       goToNextPage={goToNextPage}
-      goToPrevPage={goToPrevPage}
+      goToPage={goToPage}
     />
   );
 }

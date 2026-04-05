@@ -17,5 +17,5 @@ export const sharedFilterSchema = {
     .optional(),
   page: z.number().int().min(1).optional(),
   sortBy: z.enum(['createdAt', 'price', 'title'] as const).optional(),
-  sortOrder: z.nativeEnum(SortOrder).optional(),
+  sortOrder: z.enum(SortOrder).optional(),
 };

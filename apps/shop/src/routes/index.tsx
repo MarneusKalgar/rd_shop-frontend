@@ -7,7 +7,7 @@ export const Route = createFileRoute('/')({
   component: Home,
   loader: async () => {
     const result = await store.dispatch(
-      productsApi.endpoints.getProductsCategories.initiate(undefined),
+      productsApi.endpoints.getProductsCategories.initiate(undefined, { subscribe: false }),
     );
     return { categories: result.data?.data ?? [] };
   },
