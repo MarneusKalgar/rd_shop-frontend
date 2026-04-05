@@ -1,11 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Home } from '../pages/Home';
+import { productsApi } from '@/store/api/productsApi';
+import { store } from '@/store';
 
 export const Route = createFileRoute('/')({
   component: Home,
   loader: async () => {
-    // TODO: fetch categories from GET /api/v1/categories
-    return { categories: [] as string[] };
+    const result = await store.dispatch(
+      productsApi.endpoints.getProductsCategories.initiate(undefined, { subscribe: false }),
+    );
+    return { categories: result.data?.data ?? [] };
   },
   pendingComponent: () => <div>Loading...</div>,
   errorComponent: ({ error }) => <div>Error: {error.message}</div>,

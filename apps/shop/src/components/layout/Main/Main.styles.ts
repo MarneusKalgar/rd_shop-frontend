@@ -1,9 +1,9 @@
 import type { SxProps, Theme } from '@mui/material/styles';
-import { CONTENT_MAX_WIDTH } from '@/styles/constants';
+import { CONTENT_MAX_WIDTH, CONTENT_WIDTH } from '@/styles/constants';
 
 export const mainSx: SxProps<Theme> = {
   flexGrow: 1,
-  width: '100%',
+  width: CONTENT_WIDTH,
   maxWidth: CONTENT_MAX_WIDTH,
   mx: 'auto',
   px: 2,

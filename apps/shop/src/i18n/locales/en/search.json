@@ -1,4 +1,5 @@
 {
   "title": "Results for \"{{query}}\"",
-  "empty": "No products found."
+  "empty": "No products found.",
+  "no_results": "No products match your search."
 }

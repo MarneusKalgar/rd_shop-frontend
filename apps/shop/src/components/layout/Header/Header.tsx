@@ -102,7 +102,7 @@ export function Header() {
           </Tooltip>
 
           <Button color="inherit" size="small" onClick={toggleLanguage} sx={langButtonSx}>
-            {t('lang_switch')}
+            {i18n.language}
           </Button>
         </Box>
       </Toolbar>

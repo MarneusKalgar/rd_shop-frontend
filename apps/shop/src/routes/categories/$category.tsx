@@ -1,12 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Category } from '../../pages/Category';
+import { z } from 'zod';
+import { Category } from '@/pages/Category';
+import { sharedFilterSchema } from '@/routes/filterSchema';
+
+const searchSchema = z.object({
+  ...sharedFilterSchema,
+});
 
 export const Route = createFileRoute('/categories/$category')({
+  validateSearch: searchSchema,
   component: Category,
-  loader: async ({ params }) => {
-    // TODO: fetch products from GET /api/v1/products?category=$category
-    return { category: params.category, products: [] as unknown[] };
-  },
-  pendingComponent: () => <div>Loading...</div>,
+  pendingComponent: () => <div>Loading…</div>,
   errorComponent: ({ error }) => <div>Error: {error.message}</div>,
 });

@@ -11,6 +11,9 @@
   "sort_order_asc": "Ascending",
   "sort_order_desc": "Descending",
   "empty": "No products found.",
+  "no_results": "No products match your filters.",
+  "filter_clear": "Clear filters",
+  "filter_inStock": "In stock only",
   "loadMore": "Load more",
   "detail_about": "About",
   "detail_reviews": "Reviews",
@@ -22,5 +25,7 @@
   "review_submit": "Post review",
   "review_edit": "Edit review",
   "review_delete": "Delete review",
-  "review_empty": "No reviews yet. Be the first!"
+  "review_empty": "No reviews yet. Be the first!",
+  "filter_categories": "Categories",
+  "filter_priceRange": "Price range"
 }
