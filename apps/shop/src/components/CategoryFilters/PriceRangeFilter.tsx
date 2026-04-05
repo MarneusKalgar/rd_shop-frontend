@@ -1,40 +1,44 @@
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
+import type React from 'react';
 import { useTranslation } from 'react-i18next';
+import { PRICE_BOUNDS } from '@/constants';
+import type { Product } from '@/store/api/types/product';
 
 interface PriceRangeFilterProps {
   minPrice: string | undefined;
   maxPrice: string | undefined;
-  onMinChange: (value: string) => void;
-  onMaxChange: (value: string) => void;
+  onChange: (min: string | undefined, max: string | undefined) => void;
+  products?: Product[];
 }
 
-export function PriceRangeFilter({
-  minPrice,
-  maxPrice,
-  onMinChange,
-  onMaxChange,
-}: PriceRangeFilterProps) {
+export function PriceRangeFilter({ minPrice, maxPrice, onChange }: PriceRangeFilterProps) {
   const { t } = useTranslation('products');
+
+  const minBound = PRICE_BOUNDS.min;
+  const maxBound = PRICE_BOUNDS.max;
+
+  const value: [number, number] = [Number(minPrice ?? minBound), Number(maxPrice ?? maxBound)];
+
+  function handleChangeCommitted(_: React.SyntheticEvent | Event, newValue: number | number[]) {
+    const [min, max] = newValue as [number, number];
+    onChange(min > minBound ? String(min) : undefined, max < maxBound ? String(max) : undefined);
+  }
+
   return (
-    <Box sx={{ display: 'flex', gap: 1 }}>
-      <TextField
-        label={t('filter_minPrice')}
-        size="small"
-        type="number"
-        inputProps={{ min: 0, step: 0.01 }}
-        defaultValue={minPrice ?? ''}
-        onChange={e => onMinChange(e.target.value)}
-        sx={{ flex: 1 }}
-      />
-      <TextField
-        label={t('filter_maxPrice')}
-        size="small"
-        type="number"
-        inputProps={{ min: 0, step: 0.01 }}
-        defaultValue={maxPrice ?? ''}
-        onChange={e => onMaxChange(e.target.value)}
-        sx={{ flex: 1 }}
+    <Box>
+      <Typography variant="body2" color="text.secondary" gutterBottom>
+        {t('filter_priceRange')}
+      </Typography>
+      <Slider
+        value={value}
+        min={minBound}
+        max={maxBound}
+        step={1}
+        valueLabelDisplay="auto"
+        valueLabelFormat={v => `$${v}`}
+        onChangeCommitted={handleChangeCommitted}
       />
     </Box>
   );

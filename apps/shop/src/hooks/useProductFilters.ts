@@ -1,76 +1,42 @@
-import { useRef } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { Route } from '@/routes/categories/$category';
+import { useFilters } from '@/hooks/useFilters';
+import type { FilterKey } from '@/components/SortToolbar/chipBuilder';
 
-type FilterKey = 'brand' | 'country' | 'isActive' | 'maxPrice' | 'minPrice' | 'search';
+export type ProductFilterKey = 'brand' | 'country' | 'isActive' | 'maxPrice' | 'minPrice';
 
 export function useProductFilters() {
   const search = Route.useSearch();
-  const navigate = useNavigate({ from: Route.fullPath });
+  const routeNavigate = useNavigate({ from: Route.fullPath });
 
-  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const setFilter = <K extends FilterKey>(key: K, value: ReturnType<typeof Route.useSearch>[K]) => {
-    void navigate({
-      search: prev => ({ ...prev, [key]: value, cursor: undefined, page: undefined }),
-    });
+  const navigate = (updater: (prev: typeof search) => typeof search) => {
+    void routeNavigate({ search: updater });
   };
 
-  const setSearch = (value: string) => {
-    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
-    searchTimerRef.current = setTimeout(() => {
-      void navigate({
-        search: prev => ({
-          ...prev,
-          search: value || undefined,
-          cursor: undefined,
-          page: undefined,
-        }),
-      });
-    }, 300);
-  };
+  const base = useFilters(search, navigate);
 
-  const setBrand = (value: string) => setFilter('brand', value || undefined);
-  const setCountry = (value: string) => setFilter('country', value || undefined);
-  const setMinPrice = (value: string) => setFilter('minPrice', value || undefined);
-  const setMaxPrice = (value: string) => setFilter('maxPrice', value || undefined);
-  const setIsActive = (value: boolean) => setFilter('isActive', value || undefined);
-
-  const removeFilter = (key: FilterKey) => {
-    void navigate({
-      search: prev => {
-        const next = { ...prev };
-        delete next[key];
-        next.cursor = undefined;
-        next.page = undefined;
-        return next;
-      },
-    });
+  const removeFilter = (key: FilterKey, value?: string) => {
+    if ((key === 'brand' || key === 'country') && value !== undefined) {
+      base.removeArrayValue(key, value);
+      return;
+    }
+    if (key === 'categories') return; // never present in category page
+    base.clearField(key as keyof typeof search);
   };
 
   const clearFilters = () => {
-    void navigate({
+    void routeNavigate({
       search: ({ sortBy, sortOrder }) => ({ sortBy, sortOrder }),
     });
   };
 
-  const filters = {
-    brand: search.brand,
-    country: search.country,
-    isActive: search.isActive,
-    maxPrice: search.maxPrice,
-    minPrice: search.minPrice,
-    search: search.search,
-  };
-
   return {
-    filters,
-    setSearch,
-    setBrand,
-    setCountry,
-    setMinPrice,
-    setMaxPrice,
-    setIsActive,
+    filters: { ...base.filters },
+    setBrand: base.setBrand,
+    setCountry: base.setCountry,
+    setMinPrice: base.setMinPrice,
+    setMaxPrice: base.setMaxPrice,
+    setIsActive: base.setIsActive,
     removeFilter,
     clearFilters,
   };

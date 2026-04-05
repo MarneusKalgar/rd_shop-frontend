@@ -14,8 +14,7 @@ import { Route } from '@/routes/categories/$category';
 import { useGetProductsQuery } from '@/store/api/productsApi';
 import type { ProductCategory, ProductSortBy, SortOrder } from '@/store/api/types/product';
 import { contentAreaSx, filterPanelSx, layoutSx, pageSx } from './Category.styles';
-
-const PAGE_SIZE = 4;
+import { PAGE_SIZE } from '@/constants';
 
 export function Category() {
   const { category } = Route.useParams();
@@ -28,7 +27,7 @@ export function Category() {
   const { resetPagination } = useProductPagination();
 
   const { data, isFetching, isError } = useGetProductsQuery({
-    category: category as ProductCategory,
+    categories: [category as ProductCategory],
     cursor: search.cursor,
     limit: PAGE_SIZE,
     ...filters,
@@ -66,7 +65,7 @@ export function Category() {
 
       <Box sx={layoutSx}>
         <Box sx={filterPanelSx}>
-          <CategoryFilters onClear={resetPagination} />
+          <CategoryFilters products={products} onClear={resetPagination} />
         </Box>
 
         <Box sx={contentAreaSx}>
@@ -76,8 +75,8 @@ export function Category() {
             onSortByChange={handleSortByChange}
             onSortOrderChange={handleSortOrderChange}
             filters={filters}
-            onRemoveFilter={key => {
-              removeFilter(key);
+            onRemoveFilter={(key, value) => {
+              removeFilter(key, value);
               resetPagination();
             }}
           />

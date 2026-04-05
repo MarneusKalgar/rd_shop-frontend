@@ -1,24 +1,34 @@
-type FilterKey = 'brand' | 'country' | 'isActive' | 'maxPrice' | 'minPrice' | 'search';
+export type FilterKey =
+  | 'brand'
+  | 'categories'
+  | 'country'
+  | 'isActive'
+  | 'maxPrice'
+  | 'minPrice'
+  | 'search';
 
 interface FiltersValue {
-  brand: string | undefined;
-  country: string | undefined;
-  isActive: boolean | undefined;
-  maxPrice: string | undefined;
-  minPrice: string | undefined;
-  search: string | undefined;
+  brand?: string[] | undefined;
+  categories?: string[] | undefined;
+  country?: string[] | undefined;
+  isActive?: boolean | undefined;
+  maxPrice?: string | undefined;
+  minPrice?: string | undefined;
+  search?: string | undefined;
 }
 
 export interface ChipItem {
-  key: FilterKey | 'price';
+  key: string;
   label: string;
-  filterKey?: FilterKey;
+  filterKey: FilterKey;
+  value?: string;
 }
 
 export function buildChips(
   filters: FiltersValue,
   brandLabel: string,
   countryLabel: string,
+  categoriesLabel: string,
   inStockLabel: string,
 ): ChipItem[] {
   const chips: ChipItem[] = [];
@@ -26,16 +36,29 @@ export function buildChips(
   if (filters.search) {
     chips.push({ key: 'search', label: `"${filters.search}"`, filterKey: 'search' });
   }
-  if (filters.brand) {
-    chips.push({ key: 'brand', label: `${brandLabel}: ${filters.brand}`, filterKey: 'brand' });
+
+  for (const b of filters.brand ?? []) {
+    chips.push({ key: `brand-${b}`, label: `${brandLabel}: ${b}`, filterKey: 'brand', value: b });
   }
-  if (filters.country) {
+
+  for (const c of filters.country ?? []) {
     chips.push({
-      key: 'country',
-      label: `${countryLabel}: ${filters.country}`,
+      key: `country-${c}`,
+      label: `${countryLabel}: ${c}`,
       filterKey: 'country',
+      value: c,
     });
   }
+
+  for (const cat of filters.categories ?? []) {
+    chips.push({
+      key: `categories-${cat}`,
+      label: `${categoriesLabel}: ${cat}`,
+      filterKey: 'categories',
+      value: cat,
+    });
+  }
+
   if (filters.minPrice && filters.maxPrice) {
     chips.push({
       key: 'price',
@@ -47,6 +70,7 @@ export function buildChips(
   } else if (filters.maxPrice) {
     chips.push({ key: 'maxPrice', label: `≤ $${filters.maxPrice}`, filterKey: 'maxPrice' });
   }
+
   if (filters.isActive) {
     chips.push({ key: 'isActive', label: inStockLabel, filterKey: 'isActive' });
   }

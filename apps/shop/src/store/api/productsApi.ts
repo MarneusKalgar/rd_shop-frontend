@@ -9,10 +9,13 @@ import type {
 export const productsApi = baseApi.injectEndpoints({
   endpoints: build => ({
     getProducts: build.query<ProductsListResponse, GetProductsArgs>({
-      query: args => ({
-        url: '/products',
-        params: args,
-      }),
+      query: args => {
+        const { categories, ...rest } = args;
+        return {
+          url: '/products',
+          params: categories?.length ? { ...rest, category: categories } : rest,
+        };
+      },
       providesTags: ['Product'],
     }),
     getProductById: build.query<{ data: Product }, string>({

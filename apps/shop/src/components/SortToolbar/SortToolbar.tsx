@@ -6,17 +6,16 @@ import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import { SortOrder, type ProductSortBy } from '@/store/api/types/product';
 import { chipsSx, sortControlsSx, toolbarSx } from './SortToolbar.styles';
-import { buildChips } from './chipBuilder';
-
-type FilterKey = 'brand' | 'country' | 'isActive' | 'maxPrice' | 'minPrice' | 'search';
+import { buildChips, type FilterKey } from './chipBuilder';
 
 interface FiltersValue {
-  brand: string | undefined;
-  country: string | undefined;
-  isActive: boolean | undefined;
-  maxPrice: string | undefined;
-  minPrice: string | undefined;
-  search: string | undefined;
+  brand?: string[] | undefined;
+  categories?: string[] | undefined;
+  country?: string[] | undefined;
+  isActive?: boolean | undefined;
+  maxPrice?: string | undefined;
+  minPrice?: string | undefined;
+  search?: string | undefined;
 }
 
 interface SortToolbarProps {
@@ -25,7 +24,7 @@ interface SortToolbarProps {
   onSortByChange: (value: ProductSortBy) => void;
   onSortOrderChange: (value: SortOrder) => void;
   filters: FiltersValue;
-  onRemoveFilter: (key: FilterKey) => void;
+  onRemoveFilter: (key: FilterKey, value?: string) => void;
 }
 
 export function SortToolbar({
@@ -37,17 +36,25 @@ export function SortToolbar({
   onRemoveFilter,
 }: SortToolbarProps) {
   const { t } = useTranslation('products');
-  const chips = buildChips(filters, t('filter_brand'), t('filter_country'), t('filter_inStock'));
+  const chips = buildChips(
+    filters,
+    t('filter_brand'),
+    t('filter_country'),
+    t('filter_categories'),
+    t('filter_inStock'),
+  );
 
   return (
     <Box sx={toolbarSx}>
       <Box sx={chipsSx}>
-        {chips.map(chip => {
-          const handleDelete = chip.filterKey
-            ? () => onRemoveFilter(chip.filterKey as FilterKey)
-            : undefined;
-          return <Chip key={chip.key} label={chip.label} size="small" onDelete={handleDelete} />;
-        })}
+        {chips.map(chip => (
+          <Chip
+            key={chip.key}
+            label={chip.label}
+            size="small"
+            onDelete={() => onRemoveFilter(chip.filterKey, chip.value)}
+          />
+        ))}
       </Box>
 
       <Box sx={sortControlsSx}>

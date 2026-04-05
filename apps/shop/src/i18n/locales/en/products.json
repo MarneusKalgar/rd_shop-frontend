@@ -25,5 +25,7 @@
   "review_submit": "Post review",
   "review_edit": "Edit review",
   "review_delete": "Delete review",
-  "review_empty": "No reviews yet. Be the first!"
+  "review_empty": "No reviews yet. Be the first!",
+  "filter_categories": "Categories",
+  "filter_priceRange": "Price range"
 }

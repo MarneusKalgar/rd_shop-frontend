@@ -1,5 +1,5 @@
 import type { SxProps, Theme } from '@mui/material/styles';
-import { CONTENT_MAX_WIDTH } from '@/styles/constants';
+import { CONTENT_MAX_WIDTH, CONTENT_WIDTH } from '@/styles/constants';
 
 export const footerSx: SxProps<Theme> = {
   bgcolor: 'primary.main',
@@ -13,6 +13,6 @@ export const footerContentSx: SxProps<Theme> = {
   px: 3,
   py: 2,
   maxWidth: CONTENT_MAX_WIDTH,
-  width: '100%',
+  width: CONTENT_WIDTH,
   mx: 'auto',
 };

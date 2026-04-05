@@ -1,15 +1,24 @@
-import { useProductFilters } from '@/hooks/useProductFilters';
+import { useSearchFilters } from '@/hooks/useSearchFilters';
 import { FiltersPanel } from '@/components/FiltersPanel/FiltersPanel';
 import type { Product } from '@/store/api/types/product';
+import { CategoriesFilter } from './CategoriesFilter';
 
-interface CategoryFiltersProps {
+interface SearchFiltersProps {
   products?: Product[];
   onClear?: () => void;
 }
 
-export function CategoryFilters({ products, onClear }: CategoryFiltersProps) {
-  const { filters, setBrand, setCountry, setMinPrice, setMaxPrice, setIsActive, clearFilters } =
-    useProductFilters();
+export function SearchFilters({ products, onClear }: SearchFiltersProps) {
+  const {
+    filters,
+    setBrand,
+    setCountry,
+    setMinPrice,
+    setMaxPrice,
+    setIsActive,
+    setCategories,
+    clearFilters,
+  } = useSearchFilters();
 
   function handleClear() {
     clearFilters();
@@ -32,6 +41,9 @@ export function CategoryFilters({ products, onClear }: CategoryFiltersProps) {
         setMaxPrice(max);
       }}
       onClear={handleClear}
+      slots={{
+        middle: <CategoriesFilter value={filters.categories} onChange={setCategories} />,
+      }}
     />
   );
 }

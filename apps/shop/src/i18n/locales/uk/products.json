@@ -25,5 +25,7 @@
   "review_submit": "Залишити відгук",
   "review_edit": "Редагувати відгук",
   "review_delete": "Видалити відгук",
-  "review_empty": "Відгуків ще немає. Будьте першим!"
+  "review_empty": "Відгуків ще немає. Будьте першим!",
+  "filter_categories": "Категорії",
+  "filter_priceRange": "Діапазон цін"
 }

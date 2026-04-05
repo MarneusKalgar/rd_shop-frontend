@@ -1,6 +1,6 @@
 import { styled, alpha, type SxProps, type Theme } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { CONTENT_MAX_WIDTH } from '@/styles/constants';
+import { CONTENT_MAX_WIDTH, CONTENT_WIDTH } from '@/styles/constants';
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1.5),
@@ -37,7 +37,7 @@ export const searchWrapperSx: SxProps<Theme> = {
 export const toolbarSx: SxProps<Theme> = {
   gap: 2,
   maxWidth: CONTENT_MAX_WIDTH,
-  width: '100%',
+  width: CONTENT_WIDTH,
   mx: 'auto',
 };
 

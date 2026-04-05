@@ -95,9 +95,9 @@ export interface ReviewsListResponse {
 }
 
 export interface GetProductsArgs {
-  brand?: string;
-  category?: ProductCategory;
-  country?: string;
+  brand?: string[];
+  categories?: ProductCategory[];
+  country?: string[];
   cursor?: string;
   isActive?: boolean;
   limit?: number;

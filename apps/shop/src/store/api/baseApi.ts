@@ -4,11 +4,17 @@ export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL,
-    // prepareHeaders: (headers, { getState }) => {
-    //   const token = (getState() as RootState).auth.accessToken
-    //   if (token) headers.set('Authorization', `Bearer ${token}`)
-    //   return headers
-    // },
+    paramsSerializer: params => {
+      const search = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach(v => search.append(key, String(v)));
+        } else if (value !== null && value !== undefined) {
+          search.append(key, String(value));
+        }
+      });
+      return search.toString();
+    },
   }),
   tagTypes: ['Product', 'Order', 'User', 'Review'],
   endpoints: () => ({}),
